@@ -8,7 +8,8 @@ use App\Http\Controllers\StaffController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return view('active/index');
 });
 Route::get("/hello", function () {
     return view("hello");
@@ -131,7 +132,9 @@ Route::resource('/product', ProductController::class);
 Route::resource('/staff', StaffController::class);
 
 route::get('/dashboard', function () {
-    return view('dashboard');
+    // return view('dashboard');
+    return view('admin.dashboard');
+    // return view('active/index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

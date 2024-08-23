@@ -73,6 +73,14 @@
             </ul>
           </li>
           <li><a href="{{ route('contact')}}">Contact</a></li>
+          @if (Route::has('login') && Route::has('register'))
+                        @auth
+                            <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+                        @else
+                            <li><a href="{{ route('login') }}">Log in</a></li>
+                            <li><a href="{{ route('register') }}">Register</a></li>
+                        @endauth
+                    @endif
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
