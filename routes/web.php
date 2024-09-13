@@ -3,11 +3,13 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Covid19Controller;
 use App\Http\Controllers\LicenseController;
+use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehicleController;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -150,3 +152,15 @@ require __DIR__ . '/auth.php';
 Route::resource('license', LicenseController::class);
 Route::resource('user', UserController::class);
 Route::resource('vehicle', VehicleController::class);
+
+Route::resource('movie', MovieController::class);
+Route::get('movie-filter', [MovieController::class,'indexFilter']);
+
+Route::get('/test/pdf', function(){
+    $a = "hello";
+    $b = "world";
+    $c = "ทดสอบภาษาไทย";
+    $pdf = Pdf::loadView('testpdf', compact('a','b','c'));
+    return $pdf->stream();
+});
+
